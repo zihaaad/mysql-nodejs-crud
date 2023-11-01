@@ -1,6 +1,10 @@
 const express = require("express"),
   app = express();
-const database = require("./db");
+const database = require("./db"),
+  employeeRoutes = require("./controllers/employee.controller");
+
+//middleware
+app.use("/api/employees", employeeRoutes);
 
 database
   .query("SELECT 1")
