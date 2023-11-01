@@ -1,10 +1,13 @@
 const express = require("express"),
   app = express();
+
 require("express-async-errors");
+const bodyParser = require("body-parser");
 const database = require("./db"),
   employeeRoutes = require("./controllers/employee.controller");
 
 //middleware
+app.use(bodyParser.json());
 app.use("/api/employees", employeeRoutes);
 app.use((err, req, res, next) => {
   console.log(err);
