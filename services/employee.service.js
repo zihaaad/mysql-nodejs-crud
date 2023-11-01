@@ -1,15 +1,17 @@
 const db = require("../db");
 
 module.exports.getAllEmployees = async () => {
-  const [records] = await db
-    .query("SELECT * FROM employees")
-    .catch((err) => console.log(err));
+  const [records] = await db.query("SELECT * FROM employees");
   return records;
 };
 
-module.exports.getAllEmployees = async (id) => {
-  const [record] = await db
-    .query("SELECT * FROM employees WHERE id = ?", [id])
-    .catch((err) => console.log(err));
+module.exports.getEmployeeById = async (id) => {
+  const [record] = await db.query("SELECT * FROM employees WHERE id = ?", [id]);
+
   return record;
+};
+
+module.exports.deleteEmployee = async (id) => {
+  const [record] = await db.query("DELETE FROM employees WHERE id = ?", [id]);
+  return record.affectedRows;
 };
